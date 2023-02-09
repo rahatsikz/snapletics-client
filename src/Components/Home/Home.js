@@ -1,5 +1,6 @@
 import React from "react";
 import Features from "../Features/Features";
+import PhotoSlide from "../PhotoSlide/PhotoSlide";
 
 const Home = () => {
   return (
@@ -27,6 +28,7 @@ const Home = () => {
         </div>
       </div>
       <Features></Features>
+      <PhotoSlide></PhotoSlide>
     </section>
   );
 };

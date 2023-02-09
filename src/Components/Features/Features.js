@@ -10,14 +10,14 @@ const Features = () => {
       <h2 className="text-2xl text-center font-semibold">
         Trusted Sports Photographer
       </h2>
-      <div className="grid grid-cols-12 gap-20 mt-8">
+      <div className="grid md:grid-cols-12 gap-20 mt-8">
         <div className="md:col-span-6 col-span-7">
           <img
             src="https://images.unsplash.com/photo-1616858136942-c76763274a08?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
             alt=""
           />
         </div>
-        <div className="md:col-span-4 col-span-6 lg:mt-12">
+        <div className="md:col-span-4 col-span-6 xl:mt-12 pl-6 md:p-0">
           <p className="mb-4">
             With a commitment to professionalism and post-production skills, I
             bring each image to life and deliver the very best in sports

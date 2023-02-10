@@ -6,13 +6,13 @@ const HomeService = ({ service }) => {
   return (
     <div className="flex flex-col overflow-hidden bg-white rounded shadow-md text-slate-500 shadow-slate-200 sm:flex-row">
       {/*  <!-- Image --> */}
-      <figure className="">
+      <figure className="flex-1">
         <img src={img} alt="card " className="object-cover min-h-full" />
       </figure>
       {/*  <!-- Body--> */}
-      <div className=" p-6 sm:mx-6 sm:px-0">
+      <div className="flex-1 p-6 sm:mx-6 sm:px-0">
         <header className="flex gap-4 mb-4">
-          <div>
+          <div className="lg:min-h-[78px]">
             <h3 className="text-xl font-medium text-slate-700">{name}</h3>
             <p className="text-md text-cyan-700 font-medium"> ${price}.00</p>
           </div>

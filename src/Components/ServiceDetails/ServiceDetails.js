@@ -1,10 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { FaStar } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
+import Review from "../Review/Review";
 
 const ServiceDetails = () => {
   const details = useLoaderData();
-  const { name, img, price, ratings, description } = details;
+  const { _id, name, img, price, ratings, description } = details;
+  const [reviews, setReviews] = useState([]);
+
+  const handleReview = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const fName = form.fName.value;
+    const photo = form.photo.value;
+    const email = form.email.value;
+    const ratings = form.rating.value;
+    const review = form.review.value;
+
+    const reviewBody = {
+      service: _id,
+      serviceName: name,
+      reviewer: fName,
+      email,
+      photo,
+      ratings,
+      review,
+    };
+
+    console.log(fName, photo, email, ratings, review);
+
+    fetch("http://localhost:5000/reviews", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(reviewBody),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Review Posted Successfully");
+          form.reset();
+        }
+      });
+  };
+  useEffect(() => {
+    fetch(`http://localhost:5000/reviews?id=${_id}`)
+      .then((res) => res.json())
+      .then((data) => setReviews(data));
+  }, [_id, reviews]);
   return (
     <div>
       <div className="relative">
@@ -62,6 +107,66 @@ const ServiceDetails = () => {
         </p>
         <p> {description} </p>
       </div>
+
+      <div className="w-2/3 mx-auto">
+        <p className="text-cyan-700 tracking-wider text-lg text-center mt-8">
+          Review of Clients
+        </p>
+        {reviews.map((rev) => (
+          <Review key={rev._id} rev={rev}></Review>
+        ))}
+      </div>
+
+      <p className="text-cyan-700 tracking-wider text-lg text-center mt-8">
+        Add your Review
+      </p>
+      <form
+        onSubmit={handleReview}
+        className="w-5/6 mx-auto mt-8 mb-12 bg-gray-50 p-12 rounded-lg"
+      >
+        <div className="grid grid-cols-2 gap-5">
+          <input
+            type="text"
+            name="fName"
+            placeholder="Full Name"
+            className="input focus:border-0 input-bordered w-full"
+          />
+          <input
+            type="text"
+            name="photo"
+            placeholder="Photo URL"
+            className="input focus:border-0 input-bordered w-full"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            className="input focus:border-0 input-bordered w-full"
+          />
+          <select
+            name="rating"
+            defaultValue={"default"}
+            className="select w-full text-gray-400 font-normal focus:border-0 input-bordered text-md"
+          >
+            <option value={"default"} disabled>
+              Your Ratings
+            </option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <textarea
+          name="review"
+          className="textarea textarea-bordered focus:border-0 w-full my-4"
+          placeholder="Your Review"
+        ></textarea>
+        <button
+          type="submit"
+          className="btn btn-block bg-[#649DAD] border-0 text-white"
+        >
+          Post The Review
+        </button>
+      </form>
     </div>
   );
 };

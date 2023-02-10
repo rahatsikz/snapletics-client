@@ -1,8 +1,14 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const HomeService = ({ service }) => {
-  const { img, name, description, price, ratings } = service;
+  const { img, name, description, price, ratings, _id } = service;
+  const navigate = useNavigate();
+
+  const handleDetails = () => {
+    navigate(`/services/${_id}`);
+  };
   return (
     <div className="flex flex-col overflow-hidden bg-white rounded shadow-md text-slate-500 shadow-slate-200 sm:flex-row">
       {/*  <!-- Image --> */}
@@ -37,7 +43,10 @@ const HomeService = ({ service }) => {
         </div>
         <p>{description.slice(0, 90)}...</p>
         <div className="mt-4 text-center">
-          <button className="inline-flex h-10 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded-full bg-cyan-50 px-5 text-sm font-medium tracking-wide text-cyan-700 transition duration-300 hover:bg-cyan-100 hover:text-cyan-600 focus:bg-cyan-200 focus:text-cyan-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-cyan-300 disabled:bg-cyan-100 disabled:text-cyan-400 disabled:shadow-none">
+          <button
+            onClick={handleDetails}
+            className="inline-flex h-10 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded-full bg-cyan-50 px-5 text-sm font-medium tracking-wide text-cyan-700 transition duration-300 hover:bg-cyan-100 hover:text-cyan-600 focus:bg-cyan-200 focus:text-cyan-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-cyan-300 disabled:bg-cyan-100 disabled:text-cyan-400 disabled:shadow-none"
+          >
             <span>View Details</span>
           </button>
         </div>

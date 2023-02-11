@@ -34,7 +34,7 @@ const Review = ({ rev }) => {
                 <img
                   src={photo}
                   alt="user name"
-                  title="user name"
+                  title={reviewer}
                   width="48"
                   height="48"
                   className="max-w-full rounded shrink-0"

@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { FaStar } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useLocation } from "react-router-dom";
+import { AuthContext } from "../../Context/UserContext";
 import Review from "../Review/Review";
 
 const ServiceDetails = () => {
   const details = useLoaderData();
   const { _id, name, img, price, ratings, description } = details;
   const [reviews, setReviews] = useState([]);
+  const { user } = useContext(AuthContext);
+  const location = useLocation();
 
   const handleReview = (e) => {
     e.preventDefault();
@@ -120,53 +123,70 @@ const ServiceDetails = () => {
       <p className="text-cyan-700 tracking-wider text-lg text-center mt-8">
         Add your Review
       </p>
-      <form
-        onSubmit={handleReview}
-        className="w-5/6 mx-auto mt-8 mb-12 bg-gray-50 p-12 rounded-lg"
-      >
-        <div className="grid grid-cols-2 gap-5">
-          <input
-            type="text"
-            name="fName"
-            placeholder="Full Name"
-            className="input focus:border-0 input-bordered w-full"
-          />
-          <input
-            type="text"
-            name="photo"
-            placeholder="Photo URL"
-            className="input focus:border-0 input-bordered w-full"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            className="input focus:border-0 input-bordered w-full"
-          />
-          <select
-            name="rating"
-            defaultValue={"default"}
-            className="select w-full text-gray-400 font-normal focus:border-0 input-bordered text-md"
-          >
-            <option value={"default"} disabled>
-              Your Ratings
-            </option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
-        <textarea
-          name="review"
-          className="textarea textarea-bordered focus:border-0 w-full my-4"
-          placeholder="Your Review"
-        ></textarea>
-        <button
-          type="submit"
-          className="btn btn-block bg-[#649DAD] border-0 text-white"
+      {user?.uid ? (
+        <form
+          onSubmit={handleReview}
+          className="w-5/6 mx-auto mt-8 mb-12 bg-gray-50 p-12 rounded-lg"
         >
-          Post The Review
-        </button>
-      </form>
+          <div className="grid grid-cols-2 gap-5">
+            <input
+              type="text"
+              name="fName"
+              placeholder="Full Name"
+              defaultValue={user?.displayName}
+              className="input focus:border-0 input-bordered w-full"
+            />
+            <input
+              type="text"
+              name="photo"
+              placeholder="Photo URL"
+              defaultValue={user?.photoURL}
+              className="input focus:border-0 input-bordered w-full"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              defaultValue={user?.email}
+              readOnly
+              className="input focus:border-0 input-bordered w-full"
+            />
+            <select
+              name="rating"
+              defaultValue={"default"}
+              className="select w-full text-gray-400 font-normal focus:border-0 input-bordered text-md"
+            >
+              <option value={"default"} disabled>
+                Your Ratings
+              </option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <textarea
+            name="review"
+            className="textarea textarea-bordered focus:border-0 w-full my-4"
+            placeholder="Your Review"
+          ></textarea>
+          <button
+            type="submit"
+            className="btn btn-block bg-[#649DAD] border-0 text-white"
+          >
+            Post The Review
+          </button>
+        </form>
+      ) : (
+        <div className="text-center my-8">
+          <Link
+            to="/login"
+            state={{ from: location }}
+            replace
+            className="inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded border border-cyan-500 px-5 text-sm font-medium tracking-wide text-cyan-500 transition duration-300 hover:border-cyan-600 hover:text-cyan-600 focus:border-cyan-700 focus:text-cyan-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-cyan-300 disabled:text-cyan-300 disabled:shadow-none"
+          >
+            <span>Please Login before adding a Review</span>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

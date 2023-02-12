@@ -12,7 +12,7 @@ const Services = () => {
       <h2 className="text-2xl text-center font-semibold">
         Photography services which I provide
       </h2>
-      <div className="grid lg:grid-rows-3 lg:grid-flow-col gap-8 mt-12">
+      <div className="grid lg:grid-cols-3 gap-8 mt-12">
         {services.map((service) => (
           <ServiceCard key={service._id} service={service}></ServiceCard>
         ))}

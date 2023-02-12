@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-hot-toast";
 import { FaEdit, FaTimes } from "react-icons/fa";
 
 const MyReviewCard = ({ rev }) => {
@@ -19,6 +20,24 @@ const MyReviewCard = ({ rev }) => {
         console.log(data);
       });
   };
+  const handleDelete = () => {
+    const proceed = window.confirm("Are you sure that you want to delete");
+
+    if (proceed) {
+      // console.log(_id);
+      fetch(`http://localhost:5000/reviews/${_id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            toast.success("Review deleted successfully");
+          }
+        });
+    }
+  };
+
   return (
     <div className="overflow-hidden bg-white rounded shadow-md text-slate-500 shadow-slate-200">
       <div className="p-6">
@@ -52,7 +71,10 @@ const MyReviewCard = ({ rev }) => {
               </form>
             </div>
           </div>
-          <button className="btn btn-circle btn-outline text-xl">
+          <button
+            onClick={handleDelete}
+            className="btn btn-circle btn-outline text-xl"
+          >
             <FaTimes />
           </button>
         </div>

@@ -92,6 +92,28 @@ const Header = () => {
             {user?.uid ? (
               <>
                 <li role="none" className="flex items-stretch">
+                  <NavLink
+                    role="menuitem"
+                    aria-haspopup="false"
+                    tabIndex="0"
+                    className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-cyan-700 focus:bg-cyan-50 focus:outline-none focus-visible:outline-none lg:px-8"
+                    to="/myreview"
+                  >
+                    <span>My reviews</span>
+                  </NavLink>
+                </li>
+                <li role="none" className="flex items-stretch">
+                  <NavLink
+                    role="menuitem"
+                    aria-haspopup="false"
+                    tabIndex="0"
+                    className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-cyan-700 focus:bg-cyan-50 focus:outline-none focus-visible:outline-none lg:px-8"
+                    to="/addservice"
+                  >
+                    <span>Add service</span>
+                  </NavLink>
+                </li>
+                <li role="none" className="flex items-stretch">
                   <button
                     onClick={handleOut}
                     className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-cyan-700 focus:bg-cyan-50 focus:outline-none focus-visible:outline-none lg:px-8"

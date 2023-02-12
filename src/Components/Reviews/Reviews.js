@@ -1,7 +1,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 
-const Review = ({ rev }) => {
+const Reviews = ({ rev }) => {
   const { reviewer, photo, ratings, review } = rev;
   return (
     <div>
@@ -63,4 +63,4 @@ const Review = ({ rev }) => {
   );
 };
 
-export default Review;
+export default Reviews;

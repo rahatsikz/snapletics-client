@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast";
 import { FaStar } from "react-icons/fa";
 import { Link, useLoaderData, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Context/UserContext";
-import Review from "../Review/Review";
+import Reviews from "../Reviews/Reviews";
 
 const ServiceDetails = () => {
   const details = useLoaderData();
@@ -49,7 +49,7 @@ const ServiceDetails = () => {
       });
   };
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?id=${_id}`)
+    fetch(`http://localhost:5000/reviews/${_id}`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [_id, reviews]);
@@ -116,7 +116,7 @@ const ServiceDetails = () => {
           Review of Clients
         </p>
         {reviews.map((rev) => (
-          <Review key={rev._id} rev={rev}></Review>
+          <Reviews key={rev._id} rev={rev}></Reviews>
         ))}
       </div>
 

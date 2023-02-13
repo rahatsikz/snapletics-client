@@ -3,13 +3,22 @@ import { AuthContext } from "../../Context/UserContext";
 import MyReviewCard from "../MyReviewCard/MyReviewCard";
 
 const MyReview = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`)
-      .then((res) => res.json())
+    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("snapletics-token")}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          logOut();
+        }
+        return res.json();
+      })
       .then((data) => setMyReviews(data));
-  }, [user?.email, myReviews]);
+  }, [user?.email, myReviews, logOut]);
 
   return (
     <div>

@@ -89,6 +89,17 @@ const Header = () => {
                 <span>Services</span>
               </NavLink>
             </li>
+            <li role="none" className="flex items-stretch">
+              <NavLink
+                role="menuitem"
+                aria-haspopup="false"
+                tabIndex="0"
+                className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-cyan-700 focus:bg-cyan-50 focus:outline-none focus-visible:outline-none lg:px-8"
+                to="/blog"
+              >
+                <span>Blog</span>
+              </NavLink>
+            </li>
             {user?.uid ? (
               <>
                 <li role="none" className="flex items-stretch">

@@ -1,8 +1,14 @@
 import React from "react";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const Blog = () => {
   return (
     <div>
+      <HelmetProvider>
+        <Helmet>
+          <title>Blog - Snapletics</title>
+        </Helmet>
+      </HelmetProvider>
       <h2 className="text-cyan-700 tracking-wider text-lg text-center my-8">
         Blogs
       </h2>

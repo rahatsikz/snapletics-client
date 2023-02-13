@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Features from "../Features/Features";
 import PhotoSlide from "../PhotoSlide/PhotoSlide";
@@ -10,8 +11,14 @@ const Home = () => {
   const handletoAll = () => {
     navigate("/services");
   };
+
   return (
     <section>
+      <HelmetProvider>
+        <Helmet>
+          <title>Home - Snapletics</title>
+        </Helmet>
+      </HelmetProvider>
       <div
         className="hero h-[70vh]"
         style={{

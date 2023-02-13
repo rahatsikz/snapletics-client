@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { toast } from "react-hot-toast";
 
 const AddService = () => {
@@ -39,6 +40,11 @@ const AddService = () => {
   };
   return (
     <div className="container mx-auto mt-12">
+      <HelmetProvider>
+        <Helmet>
+          <title>Add Service - Snapletics</title>
+        </Helmet>
+      </HelmetProvider>
       <p className="text-cyan-700 tracking-wider text-lg text-center mb-8">
         Add your desired service
       </p>

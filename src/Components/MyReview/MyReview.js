@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { AuthContext } from "../../Context/UserContext";
 import MyReviewCard from "../MyReviewCard/MyReviewCard";
 
@@ -22,6 +23,11 @@ const MyReview = () => {
 
   return (
     <div>
+      <HelmetProvider>
+        <Helmet>
+          <title>My Reviews - Snapletics</title>
+        </Helmet>
+      </HelmetProvider>
       {myReviews.length === 0 ? (
         <div className="h-[90vh] flex items-center justify-center">
           <p className="text-xl font-semibold"> No Reviews were added</p>

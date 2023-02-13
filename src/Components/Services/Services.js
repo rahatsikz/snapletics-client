@@ -1,11 +1,18 @@
 import React from "react";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useLoaderData } from "react-router-dom";
 import ServiceCard from "../ServiceCard/ServiceCard";
 
 const Services = () => {
   const services = useLoaderData();
+
   return (
     <div className="container mx-auto my-12">
+      <HelmetProvider>
+        <Helmet>
+          <title>Services - Snapletics</title>
+        </Helmet>
+      </HelmetProvider>
       <p className="text-cyan-700 tracking-wider text-lg text-center">
         Services
       </p>

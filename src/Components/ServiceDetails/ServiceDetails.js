@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { toast } from "react-hot-toast";
 import { FaStar } from "react-icons/fa";
 import { Link, useLoaderData, useLocation } from "react-router-dom";
@@ -55,6 +56,11 @@ const ServiceDetails = () => {
   }, [_id, reviews]);
   return (
     <div>
+      <HelmetProvider>
+        <Helmet>
+          <title>Service Detail - Snapletics</title>
+        </Helmet>
+      </HelmetProvider>
       <div className="relative">
         <div
           className="hero h-[40vh]"

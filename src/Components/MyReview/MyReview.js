@@ -13,14 +13,16 @@ const MyReview = () => {
 
   return (
     <div>
-      {myReviews.length === 0 && (
+      {myReviews.length === 0 ? (
         <div className="h-[90vh] flex items-center justify-center">
           <p className="text-xl font-semibold"> No Reviews were added</p>
         </div>
+      ) : (
+        <p className="text-cyan-700 tracking-wider text-lg text-center mt-4">
+          {user?.displayName}'s reviews
+        </p>
       )}
-      <p className="text-cyan-700 tracking-wider text-lg text-center mt-4">
-        {user?.displayName}'s reviews
-      </p>
+
       <div className="container mx-auto grid lg:grid-cols-3 gap-8 mt-12">
         {myReviews.map((rev) => (
           <MyReviewCard key={rev._id} rev={rev}></MyReviewCard>

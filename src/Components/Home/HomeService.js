@@ -1,5 +1,6 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 import { useNavigate } from "react-router-dom";
 
 const HomeService = ({ service }) => {
@@ -13,7 +14,12 @@ const HomeService = ({ service }) => {
     <div className="flex flex-col overflow-hidden bg-white rounded shadow-md text-slate-500 shadow-slate-200 sm:flex-row">
       {/*  <!-- Image --> */}
       <figure className="flex-1">
-        <img src={img} alt="card " className="object-cover min-h-full" />
+        {/* <img src={img} alt="card " className="object-cover min-h-full" /> */}
+        <PhotoProvider>
+          <PhotoView src={img}>
+            <img src={img} alt="" className="object-cover min-h-full" />
+          </PhotoView>
+        </PhotoProvider>
       </figure>
       {/*  <!-- Body--> */}
       <div className="flex-1 p-6 sm:mx-6 sm:px-0">

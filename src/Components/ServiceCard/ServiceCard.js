@@ -1,5 +1,6 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 import { useNavigate } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
@@ -12,11 +13,20 @@ const ServiceCard = ({ service }) => {
     <div className="flex flex-col overflow-hidden dark:bg-gray-900 dark:text-white bg-white rounded shadow-md text-slate-500 dark:shadow-black shadow-slate-200 sm:flex-row">
       {/*  <!-- Image --> */}
       <figure className="flex-1">
-        <img
+        {/* <img
           src={img}
           alt="card"
           className="object-cover min-h-full aspect-auto"
-        />
+        /> */}
+        <PhotoProvider>
+          <PhotoView src={img}>
+            <img
+              src={img}
+              alt=""
+              className="object-cover min-h-full aspect-auto"
+            />
+          </PhotoView>
+        </PhotoProvider>
       </figure>
       {/*  <!-- Body--> */}
       <div className="flex-1 p-6 sm:mx-6 sm:px-0">

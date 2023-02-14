@@ -35,7 +35,7 @@ const ServiceDetails = () => {
 
     console.log(fName, photo, email, ratings, review);
 
-    fetch("http://localhost:5000/reviews", {
+    fetch("https://snapletics-server.vercel.app/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -51,7 +51,7 @@ const ServiceDetails = () => {
       });
   };
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${_id}`)
+    fetch(`https://snapletics-server.vercel.app/reviews/${_id}`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [_id, reviews]);

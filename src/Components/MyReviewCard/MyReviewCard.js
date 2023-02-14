@@ -8,7 +8,7 @@ const MyReviewCard = ({ rev }) => {
     e.preventDefault();
     const edited = e.target.edited.value;
     console.log(edited);
-    fetch(`http://localhost:5000/reviews/${_id}`, {
+    fetch(`https://snapletics-server.vercel.app/reviews/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -25,7 +25,7 @@ const MyReviewCard = ({ rev }) => {
 
     if (proceed) {
       // console.log(_id);
-      fetch(`http://localhost:5000/reviews/${_id}`, {
+      fetch(`https://snapletics-server.vercel.app/reviews/${_id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

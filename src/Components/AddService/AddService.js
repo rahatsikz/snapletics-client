@@ -39,7 +39,7 @@ const AddService = () => {
       });
   };
   return (
-    <div className="container mx-auto mt-12">
+    <div className="container mx-auto mt-12 h-[80vh]">
       <HelmetProvider>
         <Helmet>
           <title>Add Service - Snapletics</title>

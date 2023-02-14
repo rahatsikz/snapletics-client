@@ -22,7 +22,7 @@ const MyReview = () => {
   }, [user?.email, myReviews, logOut]);
 
   return (
-    <div>
+    <div className="h-[80vh]">
       <HelmetProvider>
         <Helmet>
           <title>My Reviews - Snapletics</title>

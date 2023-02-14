@@ -30,6 +30,7 @@ const ServiceDetails = () => {
       photo,
       ratings,
       review,
+      dateAdded: new Date(),
     };
 
     console.log(fName, photo, email, ratings, review);
